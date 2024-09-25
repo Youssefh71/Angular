@@ -1,0 +1,4 @@
+<p [ngClass]="{'red-title': isAdmin}">{{title}}</p>
+<button>View</button>
+<button *ngIf="isAdmin">Edit</button>
+<button (click)="toggleAdminStatus()">Toggle Admin Status</button> 
