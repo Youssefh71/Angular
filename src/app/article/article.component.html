@@ -1,6 +1,26 @@
 <div class="card">
-    <h2 >Mon Article de Blog</h2>
-    <p>
-        Ceci est mon premier blog à la Wild Cold School.
-    </p>
+    <h2>{{ article.title }}</h2>
+    <p><strong>Auteur :</strong> {{ article.author }}</p>
+    <p>{{ article.content }}</p>
+    <img [src]="article.image" [alt]="article.author" />   
+
+    <p *ngIf="article.isPublished">Cet article est publié.</p>
+    <p *ngIf="!article.isPublished">Cet article n'est pas encore publié.</p>
+
+    <!-- Champ d'entrée pour le commentaire -->
+    <div class="comment-section">
+        <label for="comment">Ajouter un commentaire :</label>
+        <input id="comment" [(ngModel)]="article.comment" placeholder="Votre commentaire" />
+    </div>
+
+    <!-- Bouton pour basculer la publication -->
+    <button (click)="togglePublication()">
+        {{ article.isPublished ? 'Dépublier' : 'Publier' }}
+    </button>
+
+    <!-- Commentaire (vide ou rempli) -->
+    <div *ngIf="article.comment">
+        <p><strong>Commentaire :</strong> {{ article.comment }}</p>
+    </div>
 </div>
+
