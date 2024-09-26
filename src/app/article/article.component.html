@@ -24,3 +24,33 @@
     </div>
 </div>
 
+
+<div class="card-container">
+    <ng-container *ngIf="hasPublishedArticles(); else noArticles">
+      <ng-container *ngFor="let article of articles">
+        <div class="card" *ngIf="article.isPublished">
+          <div class="card-header">
+            <h2 [ngClass]="{'popular-article': article.likes > 100}">{{ article.title }}</h2>
+          </div>
+          <div class="card-body">
+            <p>Par {{ article.author }}</p>
+            <p>{{ article.content }}</p>
+            <img [src]="article.image" alt="Image de l'article" class="card-img">
+          </div>
+          <div class="card-footer">
+            <p>Likes : {{ article.likes }}</p>
+          </div>
+        </div>
+      </ng-container>
+    </ng-container>
+  
+    <!-- Template alternatif pour aucun article -->
+    <ng-template #noArticles>
+      <p>Aucun article publié pour le moment.</p>
+    </ng-template>
+  </div>
+  
+
+
+    
+

@@ -12,4 +12,5 @@ import { ArticleComponent } from './article/article.component';
 })
 export class AppComponent {
   // title = 'Bienvenue sur le Wild Blog de Youssef !';
+  
 }
