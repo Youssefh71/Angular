@@ -1,54 +1,56 @@
-<div class="card">
-    <h2>{{ article.title }}</h2>
-    <p><strong>Auteur :</strong> {{ article.author }}</p>
-    <p>{{ article.content }}</p>
-    <img [src]="article.image" [alt]="article.author" />   
+<div class="card-container">
+  <h1>Bienvenue sur mon blog !</h1>
+  <ng-container>
+    @if (hasPublishedArticles()) {
+      <ng-container>
+        @for (article of articles; track article.id) {
+          <div class="card">
+            <div class="card-header">
+              <h2 [ngClass]="{'popular-article': article.likes > 100}">{{ article.title }}</h2>
+            </div>
+            <div class="card-body">
+              <p>Par {{ article.author }}</p>
+              <p>{{ article.content }}</p>
+              <img [src]="article.image" alt="Image de l'article" class="card-img">
+            </div>
+            
+            <p *ngIf="article.isPublished">Cet article est publié.</p>
+            <p *ngIf="!article.isPublished">Cet article n'est pas encore publié.</p>
+    
+             <!-- Champ d'entrée pour le commentaire -->
+            <div class="comment-section">
+              <label for="comment">Ajouter un commentaire :</label>
+              <input id="comment" [(ngModel)]="article.comment" placeholder="Votre commentaire" />
+            </div>
+    
+              <!-- Commentaire (vide ou rempli) -->
+              <div *ngIf="article.comment" class="comment">
+                <p ><strong>Commentaire :</strong> {{ article.comment }}</p>
+              </div>
+            
+            <!-- Bouton pour basculer la publication -->
+            <button (click)="togglePublication(article.id)">
+              {{ article.isPublished ? 'Dépublier' : 'Publier' }}
+            </button>  
+    
+    
+          <!--Todo: --utiliser routerlink-->
+            <button (click)="goToArticlesDetail(article.id)">Détail de l'article</button>
+          </div>
+  
+        }      
+      </ng-container>
 
-    <p *ngIf="article.isPublished">Cet article est publié.</p>
-    <p *ngIf="!article.isPublished">Cet article n'est pas encore publié.</p>
+    } @else {      
+        <!-- Template alternatif pour aucun article -->
+        <ng-template #noArticles>
+          <p>Aucun article publié pour le moment.</p>
+        </ng-template>
+    }    
+  </ng-container>
 
-    <!-- Champ d'entrée pour le commentaire -->
-    <div class="comment-section">
-        <label for="comment">Ajouter un commentaire :</label>
-        <input id="comment" [(ngModel)]="article.comment" placeholder="Votre commentaire" />
-    </div>
-
-    <!-- Bouton pour basculer la publication -->
-    <button (click)="togglePublication()">
-        {{ article.isPublished ? 'Dépublier' : 'Publier' }}
-    </button>
-
-    <!-- Commentaire (vide ou rempli) -->
-    <div *ngIf="article.comment">
-        <p><strong>Commentaire :</strong> {{ article.comment }}</p>
-    </div>
 </div>
 
-
-<div class="card-container">
-    <ng-container *ngIf="hasPublishedArticles(); else noArticles">
-      <ng-container *ngFor="let article of articles">
-        <div class="card" *ngIf="article.isPublished">
-          <div class="card-header">
-            <h2 [ngClass]="{'popular-article': article.likes > 100}">{{ article.title }}</h2>
-          </div>
-          <div class="card-body">
-            <p>Par {{ article.author }}</p>
-            <p>{{ article.content }}</p>
-            <img [src]="article.image" alt="Image de l'article" class="card-img">
-          </div>
-          <div class="card-footer">
-            <p>Likes : {{ article.likes }}</p>
-          </div>
-        </div>
-      </ng-container>
-    </ng-container>
-  
-    <!-- Template alternatif pour aucun article -->
-    <ng-template #noArticles>
-      <p>Aucun article publié pour le moment.</p>
-    </ng-template>
-  </div>
   
 
 

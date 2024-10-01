@@ -1,0 +1,12 @@
+<!-- article-page.component.html -->
+<div>
+    @if (article) {
+        <h2>{{ article.title }}</h2>
+        <p><strong>Auteur :</strong> {{ article.author }}</p>
+        <p>{{ article.content }}</p>
+        <img [src]="article.image" [alt]="article.title" />
+    }
+      
+  </div>
+
+

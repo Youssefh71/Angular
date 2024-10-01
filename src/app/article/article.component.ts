@@ -1,6 +1,9 @@
 import { CommonModule, NgIf } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, inject} from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
+import { ArticleService} from '../shared/article.service';
+import { Article } from '../models/article.class';
 
 @Component({
   selector: 'app-article-component',
@@ -9,91 +12,36 @@ import { FormsModule } from '@angular/forms';
   templateUrl: './article.component.html',
   styleUrl: './article.component.scss'
 })
-export class ArticleComponent {
-
-  article = {
-
-    title: 'Titre de l\'article',
-
-    author: 'John Doe',
-
-    content: 'Voici le contenu de l\'article.',
-
-    image: 'https://via.placeholder.com/350x150',
-
-    isPublished: true,
-
-    comment: ''
-
-  };
+export class ArticleComponent { 
+  articles: Article[] = inject(ArticleService).getArticles(); // Utiliser un tableau d'articles
+  articleId!: number; // ID de l'article sélectionné
 
 
-  togglePublication(): void {
+  constructor(
+    private router: Router, 
+  ) {}
 
-    this.article.isPublished = !this.article.isPublished;
-
+  ngOnInit(): void {
+    
   }
+   
 
-  articles = [
-
-    { 
-
-      title: 'Angular 16: Les nouveautés', 
-
-      author: 'Alice', 
-
-      content: 'Les nouveautés d\'Angular 16 incluent...', 
-
-      image: 'https://via.placeholder.com/350x150',
-
-      isPublished: true, 
-
-      comment: '', 
-
-      likes: 120 
-
-    },
-
-    { 
-
-      title: 'Développer une API REST', 
-
-      author: 'Bob', 
-
-      content: 'Développer une API REST nécessite...', 
-
-      image: 'https://via.placeholder.com/350x150',
-
-      isPublished: false, 
-
-      comment: '', 
-
-      likes: 75 
-
-    },
-
-    { 
-
-      title: 'Pourquoi TypeScript est essentiel ?', 
-
-      author: 'Charlie', 
-
-      content: 'TypeScript apporte de la robustesse...', 
-
-      image: 'https://via.placeholder.com/350x150',
-
-      isPublished: true, 
-
-      comment: '', 
-
-      likes: 200 
-
-    }
-
-  ];
 
   hasPublishedArticles(): boolean {
+    // Vérifie si un des articles est publié
     return this.articles.some(article => article.isPublished);
   }
+  
+  goToArticlesDetail(id: number): void {
+    this.router.navigate(['/article', id]);
+  }
 
+  // Méthode mise à jour pour basculer la publication d'un article
+  togglePublication(id: number): void {
+    const article = this.articles.find(article => article.id === id);
+    if (article) {
+      article.isPublished = !article.isPublished;
+    }
+  }
+  
 }

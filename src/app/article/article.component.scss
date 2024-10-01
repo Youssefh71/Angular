@@ -4,6 +4,7 @@
     padding: 16px;
     margin: 16px 0;
     background-color: #f9f9f9;
+    width: 80%;
 
     h2 {
         font-size: 1.5em;
@@ -44,6 +45,7 @@
         background-color: #007bff; /* Couleur du bouton */
         color: white;
         cursor: pointer;
+        margin: 2px;
 
         &:hover {
             background-color: #0056b3; /* Couleur au survol */
