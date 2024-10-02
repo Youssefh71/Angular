@@ -2,7 +2,7 @@ import { Component, inject, OnInit } from '@angular/core';
 import { ArticleComponent } from '../article/article.component';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { ArticleService } from '../shared/article.service';
-import { Article } from '../models/article.class';
+import { Article } from '../models/article.model';
 import { NotFoundComponent } from '../not-found/not-found.component';
 
 @Component({

@@ -3,7 +3,7 @@ import { Component, inject} from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ArticleService} from '../shared/article.service';
-import { Article } from '../models/article.class';
+import { Article } from '../models/article.model';
 
 @Component({
   selector: 'app-article-component',

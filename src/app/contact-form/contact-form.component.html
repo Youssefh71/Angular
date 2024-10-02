@@ -1,0 +1,61 @@
+<form #contactForm="ngForm" (ngSubmit)="contactForm.valid && onSubmit()">
+    <!-- Champ Nom -->
+    <fieldset class="champ">
+        <label for="lastname">Nom</label>
+        <input id="lastname" name="lastname" type="text" [(ngModel)]="newMessage.lastname" #lastname="ngModel" required
+            minlength="2" required maxlength="15">
+        @if (lastname.errors && contactForm.submitted) {
+        <div>
+            @if (lastname.errors['required']) {
+            <span>Le nom est requis</span>
+            }
+            @if (lastname.errors['minlength']) {
+            <span>Le Nom doit comporter au moins 2 caractères.</span>
+            }
+            @if (lastname.errors['maxlength']) {
+                <span>Le Nom ne doit pas dépasser 15 caractères.</span>
+            }
+        </div>
+        }
+    </fieldset>
+
+    <!-- Champ Prénom -->
+    <fieldset class="champ">
+        <label for="firstname">Prénom</label>
+        <input id="firstname" name="firstname" type="text" [(ngModel)]="newMessage.firstname" #firstname="ngModel"
+            required minlength="2" required maxlength="15">
+        @if (firstname.errors && contactForm.submitted) {
+        <div>
+            @if (firstname.errors['required']) {
+            <span>Le prénom est requis</span>
+            }
+            @if (firstname.errors['minlength']) {
+            <span>Le Prénom doit comporter au moins 2 caractères</span>
+            }
+            @if (firstname.errors['maxlength']) {
+                <span>Le prénom ne doit pas dépasser 15 caractères.</span>
+            }
+        </div>
+        }
+    </fieldset>
+
+    <!-- Champ Email -->
+    <fieldset class="champ">
+        <label for="email">Email</label>
+        <input id="email" name="email" type="email" [(ngModel)]="newMessage.email" #email="ngModel" required email>
+        @if (email.errors && contactForm.submitted) {
+        <div>
+            @if (email.errors['required']) {
+            <span>L'email est requis</span>
+            }
+            @if (email.errors['email']) {
+            <span>Veuillez fournir une adresse email valide</span>
+            }
+        </div>
+        }
+    </fieldset>
+
+
+    <button type="reset">Restaurer</button>
+    <button type="submit">Sauvegarder</button>
+</form>
