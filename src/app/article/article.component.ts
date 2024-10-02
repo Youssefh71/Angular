@@ -1,5 +1,5 @@
 import { CommonModule, NgIf } from '@angular/common';
-import { Component, inject} from '@angular/core';
+import { Component, inject, Input} from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ArticleService} from '../shared/article.service';
@@ -13,6 +13,7 @@ import { Article } from '../models/article.model';
   styleUrl: './article.component.scss'
 })
 export class ArticleComponent { 
+  @Input() article: Article[] | null = null;
   articles: Article[] = inject(ArticleService).getArticles(); // Utiliser un tableau d'articles
   articleId!: number; // ID de l'article sélectionné
 

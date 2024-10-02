@@ -1,14 +1,13 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { ArticleComponent } from '../article/article.component';
-import { ActivatedRoute, ParamMap, Router } from '@angular/router';
+import { ActivatedRoute, ParamMap, Router, RouterLink } from '@angular/router';
 import { ArticleService } from '../shared/article.service';
 import { Article } from '../models/article.model';
-import { NotFoundComponent } from '../not-found/not-found.component';
 
 @Component({
   selector: 'app-article-page',
   standalone: true,
-  imports: [ArticleComponent],
+  imports: [ArticleComponent, RouterLink],
   templateUrl: './article-page.component.html',
   styleUrl: './article-page.component.scss'
 })
@@ -17,8 +16,8 @@ export class ArticlePageComponent implements OnInit {
   articleId!: number;
   article!: Article;
   router: Router = inject(Router);
-
-  constructor(private route: ActivatedRoute, private articles: ArticleService) { }
+  route: ActivatedRoute = inject(ActivatedRoute);
+  articles: ArticleService = inject(ArticleService);
 
   ngOnInit(): void {
 

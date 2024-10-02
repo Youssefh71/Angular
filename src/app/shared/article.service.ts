@@ -8,7 +8,7 @@ import { Article } from '../models/article.model';
 })
 
 export class ArticleService {
-  private articles: Article[] = [
+   articles: Article[] = [
     {
       id: 1,
       title: 'Angular 16: Les nouveautés',
