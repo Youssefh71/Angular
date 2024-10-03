@@ -1,36 +1,26 @@
 import { CommonModule, NgIf } from '@angular/common';
-import { Component, inject, Input} from '@angular/core';
+import { Component, EventEmitter, inject, Input, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { Router } from '@angular/router';
-import { ArticleService} from '../shared/article.service';
+import { Router, RouterLink } from '@angular/router';
+import { ArticleService } from '../shared/article.service';
 import { Article } from '../models/article.model';
 
 @Component({
   selector: 'app-article-component',
   standalone: true,
-  imports: [NgIf, FormsModule, CommonModule],
+  imports: [NgIf, FormsModule, CommonModule, RouterLink],
   templateUrl: './article.component.html',
   styleUrl: './article.component.scss'
 })
-export class ArticleComponent { 
+export class ArticleComponent {
   @Input() article!: Article;
   articles: Article[] = inject(ArticleService).getArticles(); // Utiliser un tableau d'articles
   articleId!: number; // ID de l'article sélectionné
-
-
-  constructor(
-    private router: Router, 
-  ) {}
-
+   
+  @Output() notifyLike: EventEmitter<string> = new EventEmitter<string>();
+  
   ngOnInit(): void {
-    
-  }  
 
-
-  
-  
-  goToArticlesDetail(id: number): void {
-    this.router.navigate(['/article', id]);
   }
 
   // Méthode mise à jour pour basculer la publication d'un article
@@ -40,7 +30,13 @@ export class ArticleComponent {
       article.isPublished = !article.isPublished;
     }
   }
-  
+
+  sendNotification(title: string) {
+
+    this.notifyLike.emit(`${title}`);
+
+  }
+
 }
 
 

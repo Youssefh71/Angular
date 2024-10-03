@@ -15,10 +15,17 @@ import { ArticleService } from '../shared/article.service';
 export class HomePageComponent {
   articleData: ArticleService = inject(ArticleService);
   articles: Article[] = this.articleData.getArticles();
+  likeNotify: string = '';
 
   hasPublishedArticles(): boolean {
     // Vérifie si un des articles est publié
     return this.articles.some(article => article.isPublished);
+  }
+
+  handleNotification(title: string) {
+
+    this.likeNotify = (`${title} vient d'être liké`);
+
   }
 
 }

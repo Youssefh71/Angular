@@ -1,9 +1,10 @@
 <section>
     <h1>Bienvenue sur mon blog !</h1>
     <div class="articles">
+        <p>Message reçu de l'enfant : {{ likeNotify }}</p>
         @if (hasPublishedArticles()) {
-        @for(article of articles; track $index) {
-        <app-article-component [article]="article"></app-article-component>
+        @for(article of articles; track $index) {        
+        <app-article-component [article]="article" (notifyLike)="handleNotification($event)"></app-article-component>
         }
         } @else {
         <p>Aucun article publié pour le moment.</p>

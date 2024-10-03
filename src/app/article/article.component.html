@@ -35,7 +35,9 @@
 
 
         <!--Todo: --utiliser routerlink-->
-        <button (click)="goToArticlesDetail(article.id)">Détail de l'article</button>
+        <button [routerLink]="['/article', article.id]" routerLinkActive="router-link-active" >Détail de l'article</button>
+
+        <button (click)="sendNotification(article.title)">J'aime</button>
       </div>
 
     </ng-container>
