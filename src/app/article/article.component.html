@@ -1,9 +1,9 @@
 <div class="card-container">
-  <h1>Bienvenue sur mon blog !</h1>
+  
   <ng-container>
     @if (hasPublishedArticles()) {
       <ng-container>
-        @for (article of articles; track article.id) {
+       
           <div class="card">
             <div class="card-header">
               <h2 [ngClass]="{'popular-article': article.likes > 100}">{{ article.title }}</h2>
@@ -36,9 +36,8 @@
     
           <!--Todo: --utiliser routerlink-->
             <button (click)="goToArticlesDetail(article.id)">Détail de l'article</button>
-          </div>
-  
-        }      
+          </div>  
+          
       </ng-container>
 
     } @else {      

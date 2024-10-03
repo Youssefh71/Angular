@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { ArticleComponent } from "../article/article.component";
 import { ContactFormComponent } from '../contact-form/contact-form.component';
 import { SignupFormComponent } from '../signup-form/signup-form.component';
@@ -13,7 +13,7 @@ import { ArticleService } from '../shared/article.service';
   styleUrl: './home-page.component.scss'
 })
 export class HomePageComponent {
-  articleData:  ArticleService = new ArticleService();
-  article: Article[] = this.articleData.articles ;
+  articleData: ArticleService = inject(ArticleService);
+  articles: Article[] = this.articleData.getArticles();
 
 }

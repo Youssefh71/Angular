@@ -13,7 +13,7 @@ import { Article } from '../models/article.model';
   styleUrl: './article.component.scss'
 })
 export class ArticleComponent { 
-  @Input() article: Article[] | null = null;
+  @Input() article!: Article;
   articles: Article[] = inject(ArticleService).getArticles(); // Utiliser un tableau d'articles
   articleId!: number; // ID de l'article sélectionné
 
@@ -24,8 +24,7 @@ export class ArticleComponent {
 
   ngOnInit(): void {
     
-  }
-   
+  }  
 
 
   hasPublishedArticles(): boolean {

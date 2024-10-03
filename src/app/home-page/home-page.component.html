@@ -1,10 +1,7 @@
-<app-signup-form></app-signup-form>
-
-<p class="location__item">home page</p>
 <section>
-    <h3>My articles</h3>
+    <h1>Bienvenue sur mon blog !</h1>
     <div class="articles">
-    @for(article1 of article; track $index) {
+    @for(article of articles; track $index) {
         <app-article-component [article] = "article"></app-article-component>
     }
     </div> 

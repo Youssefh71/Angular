@@ -8,7 +8,7 @@ import { Article } from '../models/article.model';
 })
 
 export class ArticleService {
-   articles: Article[] = [
+  private articles: Article[] = [
     {
       id: 1,
       title: 'Angular 16: Les nouveautés',
@@ -54,5 +54,10 @@ export class ArticleService {
       throw new Error("aucun article trouvé");
     }
     return article;
+  }
+
+  hasPublishedArticles(): boolean {
+    // Vérifie si un des articles est publié
+    return this.articles.some(article => article.isPublished);
   }
 }
