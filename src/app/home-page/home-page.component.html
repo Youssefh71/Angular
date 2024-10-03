@@ -1,8 +1,13 @@
 <section>
     <h1>Bienvenue sur mon blog !</h1>
     <div class="articles">
-    @for(article of articles; track $index) {
-        <app-article-component [article] = "article"></app-article-component>
-    }
-    </div> 
+        @if (hasPublishedArticles()) {
+        @for(article of articles; track $index) {
+        <app-article-component [article]="article"></app-article-component>
+        }
+        } @else {
+        <p>Aucun article publié pour le moment.</p>
+
+        }
+    </div>
 </section>

@@ -16,4 +16,9 @@ export class HomePageComponent {
   articleData: ArticleService = inject(ArticleService);
   articles: Article[] = this.articleData.getArticles();
 
+  hasPublishedArticles(): boolean {
+    // Vérifie si un des articles est publié
+    return this.articles.some(article => article.isPublished);
+  }
+
 }

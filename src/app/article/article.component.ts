@@ -27,10 +27,7 @@ export class ArticleComponent {
   }  
 
 
-  hasPublishedArticles(): boolean {
-    // Vérifie si un des articles est publié
-    return this.articles.some(article => article.isPublished);
-  }
+  
   
   goToArticlesDetail(id: number): void {
     this.router.navigate(['/article', id]);
@@ -45,3 +42,5 @@ export class ArticleComponent {
   }
   
 }
+
+
