@@ -5,7 +5,7 @@ import { RouterLink } from '@angular/router';
 import { ArticleService } from '../shared/article.service';
 import { Article } from '../models/article.model';
 import { Observable } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
+import { ApiService } from '../service/api.service';
 
 @Component({
   selector: 'app-articleList-component',
@@ -19,14 +19,15 @@ export class ArticleListComponent {
   @Output() notifyLike: EventEmitter<string> = new EventEmitter<string>();
 
   articles: Article[] = inject(ArticleService).getArticles(); // Utiliser un tableau d'articles
+  articlesApi$!: Observable<Article[]>; // Utilisation de l'Observable
   articleId!: number; // ID de l'article sélectionné
-  articlesApi$!: Observable<Article[]>;
-  http = inject(HttpClient);
+  article$!: Observable<Article>; // Observable pour un article spécifique
+  apiService = inject(ApiService);
 
 
   ngOnInit() {
-
-    this.articlesApi$ = this.http.get<Article[]>('http://localhost:3000/articles');
+    
+    this.articlesApi$ = this.apiService.getArticles();
 
   }
 
