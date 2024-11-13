@@ -4,7 +4,7 @@
         <p>Message reçu de l'enfant : {{ likeNotify }}</p>
         @if (hasPublishedArticles()) {
         @for(article of articles; track $index) {        
-        <app-article-component [article]="article" (notifyLike)="handleNotification($event)"></app-article-component>
+        <app-articleList-component [articleChild]="article" (notifyLike)="handleNotification($event)"></app-articleList-component>
         }
         } @else {
         <p>Aucun article publié pour le moment.</p>

@@ -1,14 +1,13 @@
 import { Component, inject } from '@angular/core';
-import { ArticleComponent } from "../article/article.component";
-import { ContactFormComponent } from '../contact-form/contact-form.component';
-import { SignupFormComponent } from '../signup-form/signup-form.component';
+import { ArticleListComponent } from "../articleList/articleList.component";
 import { Article } from '../models/article.model';
 import { ArticleService } from '../shared/article.service';
+import { PokemonComponent } from '../pokemon/pokemon.component';
 
 @Component({
   selector: 'app-home-page',
   standalone: true,
-  imports: [ArticleComponent, ContactFormComponent, SignupFormComponent],
+  imports: [ArticleListComponent],
   templateUrl: './home-page.component.html',
   styleUrl: './home-page.component.scss'
 })
@@ -22,9 +21,10 @@ export class HomePageComponent {
     return this.articles.some(article => article.isPublished);
   }
 
-  handleNotification(title: string) {
+  //(toto: string) parametre de fonction
+  handleNotification(toto: string) {
 
-    this.likeNotify = (`${title} vient d'être liké`);
+    this.likeNotify = (`${toto} vient d'être liké`);
 
   }
 

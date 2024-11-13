@@ -1,0 +1,11 @@
+<div>
+    <h2>Liste des Pokémon</h2>
+    <ul>
+        @for(pokemon of pokemons; track $index){
+        <li>
+            {{ pokemon.name }}
+        </li>
+        }
+
+    </ul>
+</div>

@@ -30,7 +30,7 @@ export class SignupFormComponent {
 
   signUpForm = this.formBuilder.group({
     username: ['', [Validators.required, Validators.minLength(3)]],
-    email: ['', [Validators.required, Validators.email]],
+    email: ['', [Validators.required, Validators.pattern('^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$')]],
     passwords: this.formBuilder.group({
 
       password: ['', [Validators.required, this.securePasswordValidator()]],

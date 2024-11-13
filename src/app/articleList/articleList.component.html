@@ -1,0 +1,99 @@
+<!-- <div class="card-container">
+
+  <ng-container>
+
+    <ng-container>
+
+      <div class="card">
+        <div class="card-header">
+          <h2 [ngClass]="{'popular-article': articleChild.likes > 100}">{{ articleChild.title }}</h2>
+        </div>
+        <div class="card-body">
+          <p>Par {{ articleChild.author }}</p>
+          <p>{{ articleChild.content }}</p>
+          <img [src]="articleChild.image" alt="Image de l'article" class="card-img">
+        </div>
+
+        <p *ngIf="articleChild.isPublished">Cet article est publié.</p>
+        <p *ngIf="!articleChild.isPublished">Cet article n'est pas encore publié.</p>
+
+        <!-- Champ d'entrée pour le commentaire -->
+        <!-- <div class="comment-section">
+          <label for="comment">Ajouter un commentaire :</label>
+          <input id="comment" [(ngModel)]="articleChild.comment" placeholder="Votre commentaire" />
+        </div> -->
+
+        <!-- Commentaire (vide ou rempli) -->
+        <!-- <div *ngIf="articleChild.comment" class="comment">
+          <p><strong>Commentaire :</strong> {{ articleChild.comment }}</p>
+        </div> -->
+
+        <!-- Bouton pour basculer la publication -->
+        <!-- <button (click)="togglePublication(articleChild.id)">
+          {{ articleChild.isPublished ? 'Dépublier' : 'Publier' }}
+        </button> -->
+
+
+        <!--Todo: --utiliser routerlink-->
+        <!-- <button [routerLink]="['/article', articleChild.id]" routerLinkActive="router-link-active" >Détail de l'article</button>
+
+        <button (click)="sendNotification(articleChild.title)">J'aime</button>
+      </div>
+
+    </ng-container>
+
+  </ng-container>
+
+</div> --> 
+
+@for (article of articlesApi$ | async; track $index) {
+
+  <div class="card-container">
+
+    <ng-container>
+  
+      <ng-container>
+  
+        <div class="card">
+          <div class="card-header">
+            <h2 [ngClass]="{'popular-article': article.likes > 100}">{{ article.title }}</h2>
+          </div>
+          <div class="card-body">
+            <p>Par {{ article.author }}</p>
+            <p>{{ article.content }}</p>
+            <img [src]="article.image" alt="Image de l'article" class="card-img">
+          </div>
+  
+          <p *ngIf="article.isPublished">Cet article est publié.</p>
+          <p *ngIf="!article.isPublished">Cet article n'est pas encore publié.</p>
+  
+          <!-- Champ d'entrée pour le commentaire -->
+          <div class="comment-section">
+            <label for="comment">Ajouter un commentaire :</label>
+            <input id="comment" [(ngModel)]="article.comment" placeholder="Votre commentaire" />
+          </div>
+  
+          <!-- Commentaire (vide ou rempli) -->
+          <div *ngIf="article.comment" class="comment">
+            <p><strong>Commentaire :</strong> {{ article.comment }}</p>
+          </div>
+  
+          <!-- Bouton pour basculer la publication -->
+          <button (click)="togglePublication(article.id)">
+            {{ article.isPublished ? 'Dépublier' : 'Publier' }}
+          </button>
+  
+  
+          <!--Todo: --utiliser routerlink-->
+          <button [routerLink]="['/article', article.id]" routerLinkActive="router-link-active" >Détail de l'article</button>
+  
+          <button (click)="sendNotification(article.title)">J'aime</button>
+        </div>
+  
+      </ng-container>
+  
+    </ng-container>
+  
+  </div>
+
+}

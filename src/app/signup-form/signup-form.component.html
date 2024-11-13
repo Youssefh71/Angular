@@ -19,7 +19,7 @@
         <input id="email" formControlName="email">
         @if (signUpForm.get('email')?.invalid && signUpForm.get('email')?.touched) {
         <div>
-            @if (signUpForm.get('email')?.errors?.['required']) {
+            @if (signUpForm.get('email')?.errors?.['pattern']) {
             <span>L'email' est requis.</span>
             }
         </div>
@@ -50,11 +50,8 @@
                     chiffre, et un caractère spécial.</span>
 
                 }
-
             </div>
-
             }
-
         </div>
 
 
