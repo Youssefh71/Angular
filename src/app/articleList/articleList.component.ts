@@ -18,18 +18,13 @@ export class ArticleListComponent {
   @Input() articleChild!: Article;
   @Output() notifyLike: EventEmitter<string> = new EventEmitter<string>();
 
-  articles: Article[] = inject(ArticleService).getArticles(); // Utiliser un tableau d'articles
-  articlesApi$!: Observable<Article[]>; // Utilisation de l'Observable
-  articleId!: number; // ID de l'article sélectionné
-  article$!: Observable<Article>; // Observable pour un article spécifique
   apiService = inject(ApiService);
 
+  articles: Article[] = inject(ArticleService).getArticles(); // Utiliser un tableau d'articles
+  articlesApi$: Observable<Article[]> = this.apiService.getArticles(); // Utilisation de l'Observable
+  articleId!: number; // ID de l'article sélectionné
+ 
 
-  ngOnInit() {
-    
-    this.articlesApi$ = this.apiService.getArticles();
-
-  }
 
   // Méthode mise à jour pour basculer la publication d'un article
   togglePublication(id: number): void {

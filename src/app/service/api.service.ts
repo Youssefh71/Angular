@@ -9,19 +9,19 @@ import { Observable } from 'rxjs';
 })
 export class ApiService {
 
-  http = inject(HttpClient);
-  router: Router = inject(Router);
+  private _http = inject(HttpClient);
+  private readonly _API_URL = "http://localhost:3000/articles/";
 
 
 
  // Méthode pour récupérer tous les articles (Observable)
  getArticles(): Observable<Article[]> {
-  return this.http.get<Article[]>('http://localhost:3000/articles');
+  return this._http.get<Article[]>(this._API_URL);
 }
 
 // Méthode pour récupérer un article par son ID (Observable)
 getArticleById(id: number): Observable<Article> {
-  return this.http.get<Article>(`http://localhost:3000/articles/${id}`);
+  return this._http.get<Article>(this._API_URL + `/${id}`);
 }
 
 }
