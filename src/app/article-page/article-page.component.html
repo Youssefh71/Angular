@@ -1,14 +1,23 @@
 <!-- article-page.component.html -->
-<button [routerLink]="['']" >Go back home</button>
+<!-- <button [routerLink]="['']">Go back home</button>
 <div>
-    @if (article$ | async as article) {
-        <h2>{{ article.title}}</h2>
-        <p><strong>Auteur :</strong> {{ article.author }}</p>
-        <p>{{ article.content }}</p>
-        <img [src]="article.image" [alt]="article.title" />
+    @if (article$ | async) {
+    <h2>{{ article.title}}</h2>
+    <p><strong>Auteur :</strong> {{ article.author }}</p>
+    <p>{{ article.content }}</p>
+    <img [src]="article.image" [alt]="article.title" />
     }
-      
-  </div>
+
+</div> -->
+
+  <!-- article-page.component.html -->
+<button [routerLink]="['']">Go back home</button>
+<div *ngIf="article$ | async as article">
+    <h2>{{ article.title }}</h2>
+    <p><strong>Auteur :</strong> {{ article.author }}</p>
+    <p>{{ article.content }}</p>
+    <img [src]="article.image" [alt]="article.title" />
+</div>
 
 
   
